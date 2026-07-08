@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@400;500;600;700;800&family=Krub:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+  /* Colors from Niral Designs Palette */
+  --color-paper: #EDEAE3;
+  --color-paper-deep: #E4E0D6;
+  --color-ink: #7C4A35;
+  --color-ink-deep: #5E3626;
+  --color-lilac: #B4A6AC;
+  --color-gray: #555250;
+  --color-charcoal: #3B3735;
+
+  /* Desktop Sizes (Default) */
+  --size-display: 52px;
+  --size-h2: 34px;
+  --size-h3: 20px;
+  --size-case-title: 24px;
+  --size-body-lg: 18px;
+  --size-body: 16px;
+  --size-body-sm: 14px;
+  --size-caption: 13px;
+  --size-kicker: 12px;
+  --size-metric: 17px;
+  --size-quote: 19px;
+  --size-button: 14px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    /* Mobile Sizes */
+    --size-display: 34px;
+    --size-h2: 26px;
+    --size-h3: 18px;
+    --size-case-title: 20px;
+    --size-body-lg: 16px;
+    --size-body: 15px;
+    --size-body-sm: 13px;
+    --size-caption: 12px;
+    --size-kicker: 11px;
+    --size-metric: 15px;
+    --size-quote: 17px;
+    --size-button: 13px;
+  }
+}
+
+@theme {
+  --color-paper: var(--color-paper);
+  --color-paper-deep: var(--color-paper-deep);
+  --color-ink: var(--color-ink);
+  --color-ink-deep: var(--color-ink-deep);
+  --color-lilac: var(--color-lilac);
+  --color-gray: var(--color-gray);
+  --color-charcoal: var(--color-charcoal);
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Krub", sans-serif;
+  --font-sans: "Inter", sans-serif;
+
+  --text-display: var(--size-display);
+  --text-h2: var(--size-h2);
+  --text-h3: var(--size-h3);
+  --text-case-title: var(--size-case-title);
+  --text-body-lg: var(--size-body-lg);
+  --text-body: var(--size-body);
+  --text-body-sm: var(--size-body-sm);
+  --text-caption: var(--size-caption);
+  --text-kicker: var(--size-kicker);
+  --text-metric: var(--size-metric);
+  --text-quote: var(--size-quote);
+  --text-button: var(--size-button);
+}
+
+/* Base resets & styles */
+body {
+  background-color: var(--color-paper);
+  color: var(--color-gray);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hairlines with 22% opacity as per brand brief */
+.hairline {
+  border-color: rgba(124, 74, 53, 0.22);
+}
+
+/* General button styling */
+.btn-primary {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  padding: 12px 28px;
+  border-radius: 9999px;
+  transition: all 0.2s ease-in-out;
+}
+.btn-primary:hover {
+  background-color: var(--color-ink-deep);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-ink);
+  border: 1.5px solid var(--color-ink);
+  padding: 11px 28px;
+  border-radius: 9999px;
+  transition: all 0.2s ease-in-out;
+}
+.btn-secondary:hover {
+  background-color: rgba(124, 74, 53, 0.06);
+  transform: translateY(-1px);
+}
