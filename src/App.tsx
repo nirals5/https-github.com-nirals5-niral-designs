@@ -19,6 +19,7 @@ import pranavedaCover from "./assets/images/pranaveda_cover.jpg";
 import muralImage from "./assets/images/mural.png";
 import tivoOneAdCover from "./assets/images/tivo-one_ad_cover.jpg";
 import jeffMillerPhoto from "./assets/images/testimonial_jeff.jpeg";
+import philGolyshkoPhoto from "./assets/images/testimonial_phil.jpeg";
 import PillarDeck from "./components/PillarDeck";
 import Journey from "./components/Journey";
 import FadeInSection from "./components/FadeInSection";
@@ -39,7 +40,8 @@ const testimonials = [
     name: "Phil Golyshko",
     role: "Design Manager",
     linkedin: "https://www.linkedin.com/in/philgolyshko/",
-    initials: "PG"
+    initials: "PG",
+    avatar: philGolyshkoPhoto
   },
   {
     quote: "She wasn't just my senior designer; she became my mentor.",
