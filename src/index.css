@@ -1,6 +1,5 @@
-@import "tailwindcss";
-
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@400;500;600;700;800&family=Krub:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import "tailwindcss";
 
 :root {
   /* Colors from Niral Designs Palette */
@@ -85,6 +84,21 @@ body {
 /* Hairlines with 22% opacity as per brand brief */
 .hairline {
   border-color: rgba(124, 74, 53, 0.22);
+}
+
+/* High-contrast, elegant alpha text selection styling */
+::selection {
+  background-color: rgba(124, 74, 53, 0.22);
+  color: inherit;
+}
+
+/* Dark context selection styling (charcoal backgrounds) */
+.bg-charcoal ::selection,
+.bg-charcoal::selection,
+[class*="bg-charcoal"] ::selection,
+[class*="bg-charcoal"]::selection {
+  background-color: rgba(237, 234, 227, 0.25);
+  color: inherit;
 }
 
 /* General button styling */

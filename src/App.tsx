@@ -24,6 +24,9 @@ import PillarDeck from "./components/PillarDeck";
 import Journey from "./components/Journey";
 import FadeInSection from "./components/FadeInSection";
 import NiralLogo from "./components/NiralLogo";
+import { caseStudiesData } from "./data/caseStudies";
+import ResumePage from "./pages/ResumePage";
+import CaseStudyPage from "./pages/CaseStudyPage";
 
 const testimonials = [
   {
@@ -56,6 +59,16 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [aboutPhotoActive, setAboutPhotoActive] = useState(false);
+  const [currentHash, setCurrentHash] = useState(window.location.hash || "#/");
+
+  // Sync window hash for clean page routing
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash || "#/");
+    };
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   const handlePrevTestimonial = () => {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
@@ -94,8 +107,24 @@ export default function App() {
     }
   };
 
+  // Dedicated Full Page Routing
+  if (currentHash === "#/resume") {
+    return <ResumePage onNavigateHome={() => { window.location.hash = "#/"; }} />;
+  }
+
+  if (currentHash.startsWith("#/case-study/")) {
+    const csId = currentHash.replace("#/case-study/", "");
+    return (
+      <CaseStudyPage 
+        caseStudyId={csId} 
+        onNavigateHome={() => { window.location.hash = "#/"; }} 
+        onNavigateCaseStudy={(id) => { window.location.hash = `#/case-study/${id}`; }}
+      />
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-paper font-body text-gray antialiased selection:bg-ink/10 selection:text-ink-deep">
+    <div className="min-h-screen bg-paper font-body text-gray antialiased selection:bg-ink/20">
       
       {/* --- NAV BAR --- */}
       <nav 
@@ -145,6 +174,13 @@ export default function App() {
               <span>Contact</span>
               <span className="absolute bottom-0 left-0 w-full h-[3px] bg-ink opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
+            <button 
+              onClick={() => { window.location.hash = "#/resume"; }}
+              className="relative py-1.5 font-sans text-[13px] font-semibold uppercase text-ink hover:text-ink-deep tracking-widest transition-colors cursor-pointer group"
+            >
+              <span>Resume</span>
+              <span className="absolute bottom-0 left-0 w-full h-[3px] bg-ink opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </button>
           </div>
 
           {/* Mobile Menu Toggle Button */}
@@ -189,6 +225,15 @@ export default function App() {
             >
               Contact
             </button>
+            <button 
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.hash = "#/resume";
+              }}
+              className="font-mono text-left text-sm uppercase text-ink/85 hover:text-ink-deep tracking-widest py-1"
+            >
+              Resume
+            </button>
           </motion.div>
         )}
       </nav>
@@ -215,7 +260,7 @@ export default function App() {
               I design products people trust while creating the systems that make them feel effortless, from consumer platforms across TV, mobile, and web used by millions to AI experiences built from scratch.
             </p>
 
-            {/* Action buttons with Inter Bold size 14/13px */}
+            {/* Action buttons */}
             <div className="flex flex-wrap gap-4">
               <button 
                 onClick={() => smoothScrollTo("work")}
@@ -224,10 +269,11 @@ export default function App() {
                 See the work
               </button>
               <button 
-                onClick={() => smoothScrollTo("contact")}
-                className="btn-secondary cursor-pointer"
+                onClick={() => { window.location.hash = "#/resume"; }}
+                className="btn-secondary cursor-pointer inline-flex items-center gap-2"
               >
-                Get in touch
+                <span>Resume</span>
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
 
@@ -296,7 +342,7 @@ export default function App() {
 
 
       {/* --- SELECTED WORK SECTION --- */}
-      <section id="work" className="py-20 md:py-28 bg-charcoal border-y border-white/10 text-paper">
+      <section id="work" className="py-20 md:py-28 bg-charcoal border-y border-white/10 text-paper selection:bg-paper/25">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           
           {/* Section Heading */}
@@ -333,12 +379,21 @@ export default function App() {
 
               {/* Content side - taking 7 cols */}
               <div className="lg:col-span-7 flex flex-col items-start justify-center">
-                <span className="font-mono text-kicker uppercase text-paper-deep tracking-[0.18em] mb-3">
-                  01 — SCALE & IMPACT
+                <span className="font-mono text-kicker uppercase text-paper-deep tracking-[0.18em] mb-2">
+                  01 • SCALE & IMPACT
                 </span>
-                <h3 className="font-display font-semibold text-display text-paper leading-tight mb-4">
+                <h3 className="font-display font-semibold text-display text-paper leading-tight mb-3">
                   Elevating live TV experience, watched by millions
                 </h3>
+
+                {/* Role badge */}
+                <div className="flex items-center gap-2 mb-4 font-mono text-xs uppercase tracking-wider">
+                  <span className="text-lilac font-bold">Role:</span>
+                  <span className="text-paper bg-white/10 px-3 py-1 rounded-full font-sans text-xs font-semibold">
+                    {caseStudiesData[0].role}
+                  </span>
+                </div>
+
                 <p className="text-body text-paper/80 leading-relaxed mb-6">
                   A ground-up rethink of TiVo's live TV guide for native mobile apps. Resolved complex legacy schedules into an immersive, content-first experience.
                 </p>
@@ -350,7 +405,14 @@ export default function App() {
                   </p>
                 </div>
                 
-                {/* Destination link hidden per client's request since pages do not exist */}
+                {/* View Case Study button */}
+                <button
+                  onClick={() => { window.location.hash = `#/case-study/${caseStudiesData[0].id}`; }}
+                  className="bg-paper text-charcoal font-sans text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full hover:bg-white hover:text-charcoal hover:shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2 cursor-pointer transition-all border border-paper"
+                >
+                  <span>View case study</span>
+                  <ChevronRight className="w-4 h-4 text-ink-deep" />
+                </button>
               </div>
             </FadeInSection>
 
@@ -374,12 +436,21 @@ export default function App() {
 
               {/* Content side - taking 7 cols */}
               <div className="lg:col-span-7 flex flex-col items-start justify-center lg:order-1">
-                <span className="font-mono text-kicker uppercase text-paper-deep tracking-[0.18em] mb-3">
-                  02 — ZERO TO ONE
+                <span className="font-mono text-kicker uppercase text-paper-deep tracking-[0.18em] mb-2">
+                  02 • ZERO TO ONE
                 </span>
-                <h3 className="font-display font-semibold text-display text-paper leading-tight mb-4">
+                <h3 className="font-display font-semibold text-display text-paper leading-tight mb-3">
                   An AI wellness companion, designed from scratch
                 </h3>
+
+                {/* Role badge */}
+                <div className="flex items-center gap-2 mb-4 font-mono text-xs uppercase tracking-wider">
+                  <span className="text-lilac font-bold">Role:</span>
+                  <span className="text-paper bg-white/10 px-3 py-1 rounded-full font-sans text-xs font-semibold">
+                    {caseStudiesData[1].role}
+                  </span>
+                </div>
+
                 <p className="text-body text-paper/80 leading-relaxed mb-6">
                   Founder-designer-builder of PranaVeda, combining yoga and Ayurveda with real-time, adaptive AI-driven guidance. Envision a conversational interface and smart computer-vision tracking overlays that respect the user's natural home rhythm.
                 </p>
@@ -389,6 +460,15 @@ export default function App() {
                     Designed to target 40% improvement in routine adherence
                   </p>
                 </div>
+
+                {/* View Case Study button */}
+                <button
+                  onClick={() => { window.location.hash = `#/case-study/${caseStudiesData[1].id}`; }}
+                  className="bg-paper text-charcoal font-sans text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full hover:bg-white hover:text-charcoal hover:shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2 cursor-pointer transition-all border border-paper"
+                >
+                  <span>View case study</span>
+                  <ChevronRight className="w-4 h-4 text-ink-deep" />
+                </button>
               </div>
             </FadeInSection>
 
@@ -412,12 +492,21 @@ export default function App() {
 
               {/* Content side - taking 7 cols */}
               <div className="lg:col-span-7 flex flex-col items-start justify-center">
-                <span className="font-mono text-kicker uppercase text-paper-deep tracking-[0.18em] mb-3">
-                  03 — SYSTEMS
+                <span className="font-mono text-kicker uppercase text-paper-deep tracking-[0.18em] mb-2">
+                  03 • SYSTEMS
                 </span>
-                <h3 className="font-display font-semibold text-display text-paper leading-tight mb-4">
+                <h3 className="font-display font-semibold text-display text-paper leading-tight mb-3">
                   One language across TV, mobile, and web
                 </h3>
+
+                {/* Role badge */}
+                <div className="flex items-center gap-2 mb-4 font-mono text-xs uppercase tracking-wider">
+                  <span className="text-lilac font-bold">Role:</span>
+                  <span className="text-paper bg-white/10 px-3 py-1 rounded-full font-sans text-xs font-semibold">
+                    {caseStudiesData[2].role}
+                  </span>
+                </div>
+
                 <p className="text-body text-paper/80 leading-relaxed mb-6">
                   Designed a unified, multi-brand design system framework. Created component architectures that scaled seamlessly across 10-ft television, desktop displays, and strict handheld guidelines.
                 </p>
@@ -427,6 +516,15 @@ export default function App() {
                     ~30% reduction in design-dev cycle time
                   </p>
                 </div>
+
+                {/* View Case Study button */}
+                <button
+                  onClick={() => { window.location.hash = `#/case-study/${caseStudiesData[2].id}`; }}
+                  className="bg-paper text-charcoal font-sans text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full hover:bg-white hover:text-charcoal hover:shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2 cursor-pointer transition-all border border-paper"
+                >
+                  <span>View case study</span>
+                  <ChevronRight className="w-4 h-4 text-ink-deep" />
+                </button>
               </div>
             </FadeInSection>
 
@@ -760,13 +858,13 @@ export default function App() {
 
 
       {/* --- FOOTER --- */}
-      <footer className="bg-charcoal py-8 border-t border-white/5 text-paper-deep/60">
+      <footer className="bg-charcoal py-8 border-t border-white/5 text-paper-deep/60 selection:bg-paper/25">
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-4">
           
           {/* Logo / Credit */}
           <div className="flex items-center gap-3 text-sm font-sans tracking-wide">
             <NiralLogo size={20} className="rounded-sm opacity-80" />
-            <span>Niral Designs — designed with love, built with systems.</span>
+            <span>Niral Designs • designed with love, built with systems.</span>
           </div>
 
           {/* Social Links (Open in New Tab) */}

@@ -24,7 +24,7 @@ export default function PillarDeck() {
       id: "care",
       number: "01",
       title: "Build with care",
-      content: "Craft is care made visible — the details people never notice are the reason everything feels effortless.",
+      content: "Craft is care made visible: the details people never notice are the reason everything feels effortless.",
       highlight: "TiVo Live Guide redesign → 20% lift in viewership",
       imageSrc: pillar01
     },
