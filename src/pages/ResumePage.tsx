@@ -24,10 +24,10 @@ export default function ResumePage({ onNavigateHome }: ResumePageProps) {
           <div className="flex items-center gap-4">
             <button
               onClick={onNavigateHome}
-              className="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-widest text-ink/80 hover:text-ink-deep transition-colors cursor-pointer group"
+              className="flex items-center gap-2.5 font-display font-semibold text-base text-ink-deep hover:opacity-80 transition-opacity cursor-pointer group"
             >
-              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-              <span>Back to Portfolio</span>
+              <NiralLogo size={22} className="rounded" />
+              <span>Niral Shah</span>
             </button>
             <span className="text-ink/30 font-mono hidden sm:inline">|</span>
             <span className="font-display font-semibold text-sm text-ink-deep hidden sm:inline">

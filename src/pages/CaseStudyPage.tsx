@@ -7,6 +7,7 @@ import {
   Calendar, Link, RotateCcw
 } from "lucide-react";
 import { caseStudiesData } from "../data/caseStudies";
+import NiralLogo from "../components/NiralLogo";
 import tivoLegacyGuide from "../assets/images/casestudy_01_tivo_legacy_guide.png";
 import redesignedGridGuide from "../assets/images/redesigned_grid_guide.png";
 import fubotvImg from "../assets/images/fubotv.png";
@@ -65,11 +66,11 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
           <div className="flex items-center gap-4">
             <button
               onClick={onNavigateHome}
-              aria-label="Back to Portfolio Home Page"
-              className="inline-flex items-center gap-2 text-xs md:text-sm font-mono uppercase tracking-widest text-paper/80 hover:text-paper transition-colors cursor-pointer group focus-visible:ring-2 focus-visible:ring-lilac"
+              aria-label="Return to Home Page"
+              className="flex items-center gap-2.5 font-display font-semibold text-base md:text-lg text-paper hover:text-paper/80 transition-opacity cursor-pointer group focus-visible:ring-2 focus-visible:ring-lilac"
             >
-              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" aria-hidden="true" />
-              <span>Back to Portfolio</span>
+              <NiralLogo size={22} className="rounded" />
+              <span>Niral Shah</span>
             </button>
             <span className="text-white/20 font-mono hidden sm:inline" aria-hidden="true">|</span>
             <span className="font-mono text-xs text-lilac uppercase tracking-wider font-bold hidden sm:inline">
@@ -81,7 +82,7 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
           <div className="flex items-center gap-2" role="group" aria-label="Quick case study switcher">
             <button
               onClick={() => onNavigateCaseStudy(prevCaseStudy.id)}
-              className="p-2 rounded-lg bg-white/5 border border-white/10 text-paper/80 hover:text-paper hover:bg-white/10 transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-mono focus-visible:ring-2 focus-visible:ring-lilac"
+              className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-paper/80 hover:text-paper hover:bg-white/10 transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-mono focus-visible:ring-2 focus-visible:ring-lilac"
               aria-label={`Previous Case Study: ${prevCaseStudy.title}`}
               title={`Previous: ${prevCaseStudy.title}`}
             >
@@ -90,7 +91,7 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
             </button>
             <button
               onClick={() => onNavigateCaseStudy(nextCaseStudy.id)}
-              className="p-2 rounded-lg bg-white/5 border border-white/10 text-paper/80 hover:text-paper hover:bg-white/10 transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-mono focus-visible:ring-2 focus-visible:ring-lilac"
+              className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-paper/80 hover:text-paper hover:bg-white/10 transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-mono focus-visible:ring-2 focus-visible:ring-lilac"
               aria-label={`Next Case Study: ${nextCaseStudy.title}`}
               title={`Next: ${nextCaseStudy.title}`}
             >
@@ -345,19 +346,19 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                   <div className="pt-2 pb-4 space-y-4 sm:space-y-5">
                     {/* Row 1: 3 Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
-                      <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2.5">
+                      <div className="p-5 sm:p-6 rounded-2xl bg-white/5 space-y-2.5">
                         <h4 className="font-display font-bold text-lg sm:text-xl text-paper">Richer Visual Discovery</h4>
                         <p className="text-sm text-paper/80 leading-relaxed font-sans">
                           Replacing dense text schedules with prominent poster artwork and visual cues.
                         </p>
                       </div>
-                      <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2.5">
+                      <div className="p-5 sm:p-6 rounded-2xl bg-white/5 space-y-2.5">
                         <h4 className="font-display font-bold text-lg sm:text-xl text-paper">Category Browsing</h4>
                         <p className="text-sm text-paper/80 leading-relaxed font-sans">
                           Grouping content into genre buckets (Sports, News, Movies) to reduce visual scanning effort.
                         </p>
                       </div>
-                      <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2.5">
+                      <div className="p-5 sm:p-6 rounded-2xl bg-white/5 space-y-2.5">
                         <h4 className="font-display font-bold text-lg sm:text-xl text-paper">Contextual Actions</h4>
                         <p className="text-sm text-paper/80 leading-relaxed font-sans">
                           Allowing instant record, favorite, or info lookups directly from the guide view.
@@ -367,13 +368,13 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
 
                     {/* Row 2: 2 Cards (Integrated Live Playback & Minimalist Chrome) */}
                     <div className="grid grid-cols-1 md:grid-cols-5 gap-4 sm:gap-5">
-                      <div className="md:col-span-3 p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2.5">
+                      <div className="md:col-span-3 p-5 sm:p-6 rounded-2xl bg-white/5 space-y-2.5">
                         <h4 className="font-display font-bold text-lg sm:text-xl text-paper">Integrated Live Playback</h4>
                         <p className="text-sm text-paper/80 leading-relaxed font-sans">
                           Embedding live video previews directly above or inside the schedule view so users can sample channels instantly.
                         </p>
                       </div>
-                      <div className="md:col-span-2 p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2.5">
+                      <div className="md:col-span-2 p-5 sm:p-6 rounded-2xl bg-white/5 space-y-2.5">
                         <h4 className="font-display font-bold text-lg sm:text-xl text-paper">Minimalist Chrome</h4>
                         <p className="text-sm text-paper/80 leading-relaxed font-sans">
                           Stripping away heavy borders, gradients, and redundant icons to let content lead.
@@ -414,7 +415,7 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
           </section>
 
           {/* SECTION 03: SCREEN DESIGNS & CORE PRINCIPLES — BRIGHT CANVAS */}
-          <section id="principles" className="bg-paper text-ink-deep py-16 md:py-24 border-b hairline scroll-mt-28 selection:bg-ink/20">
+          <section id="principles" className="bg-paper-deep text-ink-deep py-16 md:py-24 border-b hairline scroll-mt-28 selection:bg-ink/20">
             <div className="max-w-5xl mx-auto px-6 space-y-16">
               
               {/* Section Header */}
@@ -453,7 +454,7 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                 </div>
 
                 {/* Single Combined Box Container for Tabs and Before/After View */}
-                <div className="bg-paper-deep rounded-3xl p-6 md:p-8 border hairline space-y-8">
+                <div className="bg-paper rounded-3xl p-6 md:p-8 space-y-8">
                   
                   {/* Header / Tab Switcher inside the same box */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b hairline pb-5">
@@ -462,7 +463,7 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                         Compare Before &amp; After
                       </span>
                       <span className="text-xs text-gray font-mono block">
-                        Select a tab below to switch views:
+                        Select a tab to switch views:
                       </span>
                     </div>
 
@@ -471,10 +472,10 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                         role="tab"
                         aria-selected={selectedScreenTab === "after"}
                         onClick={() => setSelectedScreenTab("after")}
-                        className={`px-5 py-2.5 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer flex-1 sm:flex-initial text-center focus-visible:ring-2 focus-visible:ring-ink ${
+                        className={`px-5 py-2.5 rounded-full font-mono text-xs font-bold transition-all cursor-pointer flex-1 sm:flex-initial text-center focus-visible:ring-2 focus-visible:ring-ink ${
                           selectedScreenTab === "after"
                             ? "bg-ink text-paper shadow-md"
-                            : "bg-paper text-ink-deep hover:bg-ink/10 border hairline"
+                            : "bg-paper-deep text-ink-deep hover:bg-ink/10 border hairline"
                         }`}
                       >
                         Redesigned Guide
@@ -483,10 +484,10 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                         role="tab"
                         aria-selected={selectedScreenTab === "before"}
                         onClick={() => setSelectedScreenTab("before")}
-                        className={`px-5 py-2.5 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer flex-1 sm:flex-initial text-center focus-visible:ring-2 focus-visible:ring-ink ${
+                        className={`px-5 py-2.5 rounded-full font-mono text-xs font-bold transition-all cursor-pointer flex-1 sm:flex-initial text-center focus-visible:ring-2 focus-visible:ring-ink ${
                           selectedScreenTab === "before"
                             ? "bg-ink text-paper shadow-md"
-                            : "bg-paper text-ink-deep hover:bg-ink/10 border hairline"
+                            : "bg-paper-deep text-ink-deep hover:bg-ink/10 border hairline"
                         }`}
                       >
                         Legacy Guide
@@ -516,14 +517,14 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                           
                           {/* Item 1 */}
                           <div className="flex items-start gap-4">
-                            <div className="w-10 h-10 rounded-full bg-ink/10 text-ink font-serif font-bold text-lg flex items-center justify-center shrink-0 mt-0.5">
+                            <div className="w-10 h-10 rounded-full bg-ink/10 text-ink font-body font-bold text-base sm:text-lg inline-flex items-center justify-center shrink-0 mt-0.5 leading-none select-none text-center">
                               1
                             </div>
                             <div className="space-y-0.5">
-                              <h4 className="font-sans font-bold text-base sm:text-lg text-ink-deep">
+                              <h4 className="font-body font-bold text-base sm:text-lg text-ink-deep">
                                 Reduce visual clutter
                               </h4>
-                              <p className="font-sans text-sm text-ink/70">
+                              <p className="font-body text-sm text-ink">
                                 Clear visual hierarchy
                               </p>
                             </div>
@@ -531,14 +532,14 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
 
                           {/* Item 2 */}
                           <div className="flex items-start gap-4">
-                            <div className="w-10 h-10 rounded-full bg-ink/10 text-ink font-serif font-bold text-lg flex items-center justify-center shrink-0 mt-0.5">
+                            <div className="w-10 h-10 rounded-full bg-ink/10 text-ink font-body font-bold text-base sm:text-lg inline-flex items-center justify-center shrink-0 mt-0.5 leading-none select-none text-center">
                               2
                             </div>
                             <div className="space-y-0.5">
-                              <h4 className="font-sans font-bold text-base sm:text-lg text-ink-deep">
+                              <h4 className="font-body font-bold text-base sm:text-lg text-ink-deep">
                                 Instant Video Preview
                               </h4>
-                              <p className="font-sans text-sm text-ink/70">
+                              <p className="font-body text-sm text-ink">
                                 Human-centered experience
                               </p>
                             </div>
@@ -546,14 +547,14 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
 
                           {/* Item 3 */}
                           <div className="flex items-start gap-4">
-                            <div className="w-10 h-10 rounded-full bg-ink/10 text-ink font-serif font-bold text-lg flex items-center justify-center shrink-0 mt-0.5">
+                            <div className="w-10 h-10 rounded-full bg-ink/10 text-ink font-body font-bold text-base sm:text-lg inline-flex items-center justify-center shrink-0 mt-0.5 leading-none select-none text-center">
                               3
                             </div>
                             <div className="space-y-0.5">
-                              <h4 className="font-sans font-bold text-base sm:text-lg text-ink-deep">
+                              <h4 className="font-body font-bold text-base sm:text-lg text-ink-deep">
                                 Easy-to-scan
                               </h4>
-                              <p className="font-sans text-sm text-ink/70">
+                              <p className="font-body text-sm text-ink">
                                 Usability with aesthetics
                               </p>
                             </div>
@@ -561,14 +562,14 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
 
                           {/* Item 4 */}
                           <div className="flex items-start gap-4">
-                            <div className="w-10 h-10 rounded-full bg-ink/10 text-ink font-serif font-bold text-lg flex items-center justify-center shrink-0 mt-0.5">
+                            <div className="w-10 h-10 rounded-full bg-ink/10 text-ink font-body font-bold text-base sm:text-lg inline-flex items-center justify-center shrink-0 mt-0.5 leading-none select-none text-center">
                               4
                             </div>
                             <div className="space-y-0.5">
-                              <h4 className="font-sans font-bold text-base sm:text-lg text-ink-deep">
+                              <h4 className="font-body font-bold text-base sm:text-lg text-ink-deep">
                                 Efficient content experience
                               </h4>
-                              <p className="font-sans text-sm text-ink/70">
+                              <p className="font-body text-sm text-ink">
                                 Minimalist Design
                               </p>
                             </div>
@@ -593,44 +594,108 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                         </div>
                       </div>
 
-                      <div className="lg:col-span-6 space-y-4 pl-0 lg:pl-4">
-                        <h4 className="font-display text-xl font-bold text-red-600">
-                          Legacy Friction Points:
-                        </h4>
-                        <div className="space-y-3 text-xs md:text-sm text-ink-deep font-body">
-                          <div className="border-l-4 border-red-500 bg-red-50 rounded-r-xl p-4 pl-6 space-y-1">
-                            <strong className="text-red-950 block font-mono text-xs uppercase">No Video Preview</strong>
-                            <p className="text-red-900/80 leading-relaxed">Users had to leave the guide and wait for full playback to see what was airing.</p>
+                      <div className="lg:col-span-6 space-y-6 pl-0 lg:pl-4">
+                        <div className="space-y-6">
+                          
+                          {/* Item 1 */}
+                          <div className="flex items-start gap-4">
+                            <div className="w-10 h-10 rounded-full bg-paper-deep text-ink font-body font-bold text-base sm:text-lg inline-flex items-center justify-center shrink-0 mt-0.5 leading-none select-none text-center">
+                              1
+                            </div>
+                            <div className="space-y-0.5">
+                              <h4 className="font-body font-bold text-base sm:text-lg text-ink-deep">
+                                Cluttered channel cells
+                              </h4>
+                              <p className="font-body text-sm text-ink">
+                                High cognitive load
+                              </p>
+                            </div>
                           </div>
-                          <div className="border-l-4 border-red-500 bg-red-50 rounded-r-xl p-4 pl-6 space-y-1">
-                            <strong className="text-red-950 block font-mono text-xs uppercase">High Cognitive Scanning Load</strong>
-                            <p className="text-red-900/80 leading-relaxed">Small numerical channel text required manual scanning line-by-line.</p>
+
+                          {/* Item 2 */}
+                          <div className="flex items-start gap-4">
+                            <div className="w-10 h-10 rounded-full bg-paper-deep text-ink font-body font-bold text-base sm:text-lg inline-flex items-center justify-center shrink-0 mt-0.5 leading-none select-none text-center">
+                              2
+                            </div>
+                            <div className="space-y-0.5">
+                              <h4 className="font-body font-bold text-base sm:text-lg text-ink-deep">
+                                Multiple steps before watching
+                              </h4>
+                              <p className="font-body text-sm text-ink">
+                                Long time-to-content
+                              </p>
+                            </div>
                           </div>
-                          <div className="border-l-4 border-red-500 bg-red-50 rounded-r-xl p-4 pl-6 space-y-1">
-                            <strong className="text-red-950 block font-mono text-xs uppercase">Buried Favorites</strong>
-                            <p className="text-red-900/80 leading-relaxed">Favorites required navigating deep into settings menus.</p>
+
+                          {/* Item 3 */}
+                          <div className="flex items-start gap-4">
+                            <div className="w-10 h-10 rounded-full bg-paper-deep text-ink font-body font-bold text-base sm:text-lg inline-flex items-center justify-center shrink-0 mt-0.5 leading-none select-none text-center">
+                              3
+                            </div>
+                            <div className="space-y-0.5">
+                              <h4 className="font-body font-bold text-base sm:text-lg text-ink-deep">
+                                Static, text-heavy grid
+                              </h4>
+                              <p className="font-body text-sm text-ink">
+                                Slow decision making
+                              </p>
+                            </div>
                           </div>
+
+                          {/* Item 4 */}
+                          <div className="flex items-start gap-4">
+                            <div className="w-10 h-10 rounded-full bg-paper-deep text-ink font-body font-bold text-base sm:text-lg inline-flex items-center justify-center shrink-0 mt-0.5 leading-none select-none text-center">
+                              4
+                            </div>
+                            <div className="space-y-0.5">
+                              <h4 className="font-body font-bold text-base sm:text-lg text-ink-deep">
+                                Colorful icons &amp; attributes
+                              </h4>
+                              <p className="font-body text-sm text-ink">
+                                Visual Noise
+                              </p>
+                            </div>
+                          </div>
+
                         </div>
                       </div>
                     </div>
                   )}
+
+                  {/* DESIGN DECISION CALLOUT */}
+                  <div className="bg-paper-deep/60 border-l-2 border-ink rounded-r-xl p-4 sm:p-5 space-y-1">
+                    <span className="font-body font-bold text-xs uppercase tracking-widest text-ink block">
+                      DESIGN DECISION
+                    </span>
+                    <p className="font-body text-sm sm:text-base text-ink-deep leading-relaxed">
+                      We chose to lead with live content instead of interface chrome. Every visual decision answered one question faster: ”Do I want to watch this?”
+                    </p>
+                  </div>
 
                 </div>
 
               </div>
 
               {/* ------------------------------------------------------------- */}
-              {/* PRINCIPLE 2: MINIMIZE NAVIGATION FRICTION */}
+              {/* PRINCIPLE 2: MAKE INTERACTIONS LIGHTER */}
               {/* ------------------------------------------------------------- */}
               <div className="pt-12 border-t hairline space-y-8">
                 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <h3 className="font-display text-2xl font-bold text-ink-deep">
-                    2. Minimize Navigation Friction
+                    2. Make Interactions Lighter
                   </h3>
-                  <p className="text-body-lg text-gray leading-relaxed max-w-3xl">
-                    Instead of sending users to separate screens for channel schedules or recording options, bottom sheets keep playback visible in the background while actions execute instantly.
-                  </p>
+                  <div className="space-y-3 text-body-lg text-gray leading-relaxed max-w-3xl font-body">
+                    <p>
+                      Browsing television isn't linear.
+                    </p>
+                    <p>
+                      People discover something interesting, check the schedule, add a favorite, catch up on a missed episode, compare another channel, and continue browsing, all within a few moments.
+                    </p>
+                    <p>
+                      The existing experience interrupted that flow by sending users to separate screens for almost every action.
+                    </p>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -664,19 +729,19 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
 
                         {/* Interactive Sheet Action Buttons (Emojis Removed) */}
                         <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
-                          <div className="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white flex items-center gap-2 cursor-pointer transition-colors">
+                          <div className="p-2.5 px-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white flex items-center gap-2 cursor-pointer transition-colors">
                             <Zap className="w-3.5 h-3.5 text-lilac shrink-0" />
                             <span>Catch Up Episode</span>
                           </div>
-                          <div className="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white flex items-center gap-2 cursor-pointer transition-colors">
+                          <div className="p-2.5 px-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white flex items-center gap-2 cursor-pointer transition-colors">
                             <Tv2 className="w-3.5 h-3.5 text-lilac shrink-0" />
                             <span>7-Day Schedule</span>
                           </div>
-                          <div className="p-2.5 rounded-xl bg-lilac/20 border border-lilac/40 text-paper font-bold flex items-center gap-2 cursor-pointer transition-colors">
+                          <div className="p-2.5 px-3.5 rounded-full bg-lilac/20 border border-lilac/40 text-paper font-bold flex items-center gap-2 cursor-pointer transition-colors">
                             <Star className="w-3.5 h-3.5 text-lilac fill-lilac shrink-0" />
                             <span>Favorite Channel</span>
                           </div>
-                          <div className="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white flex items-center gap-2 cursor-pointer transition-colors">
+                          <div className="p-2.5 px-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white flex items-center gap-2 cursor-pointer transition-colors">
                             <Film className="w-3.5 h-3.5 text-lilac shrink-0" />
                             <span>Alternate Sources</span>
                           </div>
@@ -1124,7 +1189,7 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                     </p>
 
                     <div className="pt-2 flex flex-wrap items-center gap-4">
-                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 border border-white/10 font-mono text-xs text-paper font-medium">
+                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 font-mono text-xs text-paper font-medium">
                         <User className="w-3.5 h-3.5 text-lilac" /> Role: {nextCaseStudy.role}
                       </div>
                       
@@ -1145,7 +1210,7 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent pointer-events-none" />
                       
-                      <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-charcoal/90 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/10">
+                      <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-charcoal/90 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/10">
                         <span className="font-mono text-[11px] text-paper/80 font-semibold truncate">
                           {nextCaseStudy.deliverables}
                         </span>

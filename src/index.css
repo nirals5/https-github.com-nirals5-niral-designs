@@ -3,7 +3,7 @@
 
 :root {
   /* Colors from Niral Designs Palette */
-  --color-paper: #EDEAE3;
+  --color-paper: #FAF8F3;
   --color-paper-deep: #E4E0D6;
   --color-ink: #7C4A35;
   --color-ink-deep: #5E3626;
@@ -45,13 +45,13 @@
 }
 
 @theme {
-  --color-paper: var(--color-paper);
-  --color-paper-deep: var(--color-paper-deep);
-  --color-ink: var(--color-ink);
-  --color-ink-deep: var(--color-ink-deep);
-  --color-lilac: var(--color-lilac);
-  --color-gray: var(--color-gray);
-  --color-charcoal: var(--color-charcoal);
+  --color-paper: #FAF8F3;
+  --color-paper-deep: #E4E0D6;
+  --color-ink: #7C4A35;
+  --color-ink-deep: #5E3626;
+  --color-lilac: #B4A6AC;
+  --color-gray: #555250;
+  --color-charcoal: #3B3735;
 
   --font-display: "Fraunces", serif;
   --font-body: "Krub", sans-serif;
