@@ -20,7 +20,7 @@
   --size-body: 16px;
   --size-body-sm: 14px;
   --size-caption: 13px;
-  --size-kicker: 12px;
+  --size-kicker: 13px;
   --size-metric: 17px;
   --size-quote: 19px;
   --size-button: 14px;
@@ -28,7 +28,7 @@
 
 @media (max-width: 768px) {
   :root {
-    /* Mobile Sizes */
+    /* Mobile Sizes - Enforcing min 13px */
     --size-display: 34px;
     --size-h2: 26px;
     --size-h3: 18px;
@@ -36,8 +36,8 @@
     --size-body-lg: 16px;
     --size-body: 15px;
     --size-body-sm: 13px;
-    --size-caption: 12px;
-    --size-kicker: 11px;
+    --size-caption: 13px;
+    --size-kicker: 13px;
     --size-metric: 15px;
     --size-quote: 17px;
     --size-button: 13px;
@@ -56,6 +56,7 @@
   --font-display: "Fraunces", serif;
   --font-body: "Krub", sans-serif;
   --font-sans: "Inter", sans-serif;
+  --font-mono: "Inter", sans-serif;
 
   --text-display: var(--size-display);
   --text-h2: var(--size-h2);
@@ -79,6 +80,60 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  font-size: 16px;
+}
+
+/* Global Minimum 13px Font Size Directive */
+p, span, div, button, a, label, h1, h2, h3, h4, h5, h6, li, td, th {
+  min-font-size: 13px;
+}
+
+.text-xs,
+.text-\[10px\],
+.text-\[11px\],
+.text-\[12px\],
+.text-\[9px\],
+.text-\[8px\],
+.text-\[7px\],
+.text-\[6px\] {
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+}
+
+/* Accessibility Focus States */
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.bg-charcoal :focus-visible,
+[class*="bg-charcoal"] :focus-visible {
+  outline: 2px solid var(--color-paper);
+  outline-offset: 3px;
+}
+
+/* Screen reader only utility class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Hairlines with 22% opacity as per brand brief */

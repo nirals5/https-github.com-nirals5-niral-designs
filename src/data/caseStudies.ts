@@ -50,7 +50,7 @@ export const caseStudiesData: CaseStudyData[] = [
     kicker: "01 • SCALE & IMPACT",
     title: "Reimagining Live TV Around People, Not Channels",
     role: "Lead Product Designer",
-    companyOrContext: "TiVo / Xperi",
+    companyOrContext: "Xperi",
     timeline: "6 Months",
     coverImage: liveGuideCover,
     summary: "A ground-up rethink of TiVo's live TV guide for native mobile apps, transforming legacy channel grids into an immersive, content-first discovery experience.",
@@ -71,11 +71,11 @@ export const caseStudiesData: CaseStudyData[] = [
       "6–8% growth in unique active Guide users.",
       "Launched with Liberty Latin America for the FIFA World Cup and scaled to international broadband partners."
     ],
-    deliverables: "Product UX Strategy, Native Mobile UI Specs, Interactive Prototypes, Cross-Platform Pattern Specs",
+    deliverables: "Product UX Strategy, Native iOS & Android App Design",
     sections: [
       {
         id: "intro",
-        title: "The Opportunity Behind a Technical Migration",
+        title: "The Challenge of an Unchanged Classic",
         paragraphs: [
           "The Live Guide was one of the most frequently used experiences in the TiVo mobile app. It helped people answer one simple question: 'What should I watch right now?' Yet the experience had barely evolved in years.",
           "It was built around navigating television channels rather than discovering content. Dense grids, legacy interaction patterns, and accumulated interface clutter made the Guide feel increasingly disconnected from how people actually watched television.",
