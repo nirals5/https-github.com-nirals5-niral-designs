@@ -18,7 +18,7 @@ import primevideoImg from "../assets/images/primevideo.png";
 import slingtvImg from "../assets/images/slingtv.png";
 import tubiImg from "../assets/images/tubi.png";
 import youtubeImg from "../assets/images/youtube.png";
-import guideQuickActionsVideo from "../assets/images/guide_quick_actions.mov";
+import guideQuickActionsVideo from "../assets/images/guide_quick_actions.mp4";
 
 interface CaseStudyPageProps {
   caseStudyId: string;
@@ -731,7 +731,7 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                         In-Context Bottom Sheets Over Page Navigation
                       </h4>
                       <p className="text-body-md text-gray leading-relaxed font-body pl-2">
-                        Instead of kicking users to separate full-screen views to set recordings or view episode guides, translucent bottom sheets preserve live playback in the background, reducing drop-off rates by 40%.
+                        Instead of interrupting browsing with full-screen pages, I kept actions in context. Lightweight bottom sheets let people catch up on episodes, view schedules, favorite channels, or explore alternative sources without losing their place in the Guide.
                       </p>
                     </div>
 
