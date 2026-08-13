@@ -18,6 +18,7 @@ import primevideoImg from "../assets/images/primevideo.png";
 import slingtvImg from "../assets/images/slingtv.png";
 import tubiImg from "../assets/images/tubi.png";
 import youtubeImg from "../assets/images/youtube.png";
+import guideQuickActionsVideo from "../assets/images/guide_quick_actions.mov";
 
 interface CaseStudyPageProps {
   caseStudyId: string;
@@ -698,58 +699,23 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                   
-                  {/* Bottom Sheet Mobile UI Render */}
-                  <div className="lg:col-span-6 flex justify-center">
-                    <div className="w-full max-w-[340px] bg-charcoal rounded-[40px] p-3 border-4 border-white/20 shadow-2xl relative font-sans overflow-hidden">
-                      {/* Dimmed Background Live Guide */}
-                      <div className="opacity-30 blur-sm pointer-events-none space-y-3">
-                        <div className="h-28 bg-blue-900 rounded-2xl" />
-                        <div className="h-12 bg-white/20 rounded-xl" />
-                        <div className="h-12 bg-white/20 rounded-xl" />
-                        <div className="h-12 bg-white/20 rounded-xl" />
-                      </div>
-
-                      {/* Translucent Glass Bottom Sheet Modal */}
-                      <div className="absolute inset-x-2 bottom-2 bg-charcoal/95 backdrop-blur-xl border border-white/20 rounded-3xl p-4 shadow-2xl space-y-3">
-                        <div className="w-10 h-1 bg-white/30 rounded-full mx-auto mb-2" />
-                        
-                        <div className="flex items-center justify-between border-b border-white/10 pb-2">
-                          <div>
-                            <span className="text-[10px] font-mono text-lilac uppercase font-bold block">
-                              Channel Actions • Ch 104
-                            </span>
-                            <h5 className="text-sm font-bold text-white">NBC • Nightly News</h5>
-                          </div>
-                          <span className="px-2 py-0.5 rounded bg-red-600 text-white font-mono text-[9px] font-bold">
-                            LIVE
-                          </span>
-                        </div>
-
-                        {/* Interactive Sheet Action Buttons (Emojis Removed) */}
-                        <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
-                          <div className="p-2.5 px-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white flex items-center gap-2 cursor-pointer transition-colors">
-                            <Zap className="w-3.5 h-3.5 text-lilac shrink-0" />
-                            <span>Catch Up Episode</span>
-                          </div>
-                          <div className="p-2.5 px-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white flex items-center gap-2 cursor-pointer transition-colors">
-                            <Tv2 className="w-3.5 h-3.5 text-lilac shrink-0" />
-                            <span>7-Day Schedule</span>
-                          </div>
-                          <div className="p-2.5 px-3.5 rounded-full bg-lilac/20 border border-lilac/40 text-paper font-bold flex items-center gap-2 cursor-pointer transition-colors">
-                            <Star className="w-3.5 h-3.5 text-lilac fill-lilac shrink-0" />
-                            <span>Favorite Channel</span>
-                          </div>
-                          <div className="p-2.5 px-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white flex items-center gap-2 cursor-pointer transition-colors">
-                            <Film className="w-3.5 h-3.5 text-lilac shrink-0" />
-                            <span>Alternate Sources</span>
-                          </div>
-                        </div>
-
-                        <div className="text-[10px] text-white/50 text-center font-mono pt-1">
-                          Swipe down or tap background to dismiss
-                        </div>
+                  {/* Bottom Sheet Mobile UI Render / Quick Actions Video Demo */}
+                  <div className="lg:col-span-6 flex items-center justify-center">
+                    <div className="w-full h-full bg-[#EDEAE3] rounded-2xl p-6 sm:p-8 flex items-center justify-center min-h-0">
+                      <div className="relative overflow-hidden rounded-2xl flex items-center justify-center max-h-full">
+                        <video 
+                          src={guideQuickActionsVideo} 
+                          autoPlay 
+                          loop 
+                          muted 
+                          playsInline 
+                          controls
+                          className="max-h-full lg:max-h-[500px] w-auto rounded-2xl object-contain block"
+                        >
+                          Your browser does not support the video tag.
+                        </video>
                       </div>
                     </div>
                   </div>
