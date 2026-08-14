@@ -383,7 +383,7 @@ export default function App() {
                   01 • SCALE & IMPACT
                 </span>
                 <h3 className="font-display font-semibold text-display text-paper leading-tight mb-3">
-                  Elevating live TV experience, watched by millions
+                  Reimagining Live TV Around People, Not Channels
                 </h3>
 
                 {/* Role badge */}

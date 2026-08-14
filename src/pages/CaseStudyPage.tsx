@@ -35,11 +35,51 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
 
   const [activeTab, setActiveTab] = useState<string>("intro");
   const [selectedScreenTab, setSelectedScreenTab] = useState<"after" | "before">("after");
-  const [activeCategoryFilter, setActiveCategoryFilter] = useState<string>("Sports");
+  const isTiVo = caseStudy.id === "tivo-mobile";
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [caseStudyId]);
+
+  useEffect(() => {
+    if (!isTiVo) return;
+
+    const sectionIds = ["intro", "opportunity", "principles", "collaboration", "outcomes", "reflection", "next-case-study"];
+    const navOffset = 120;
+
+    let ticking = false;
+    const updateActiveSection = () => {
+      ticking = false;
+      let current = sectionIds[0];
+      for (const id of sectionIds) {
+        const section = document.getElementById(id);
+        if (section && section.getBoundingClientRect().top <= navOffset) {
+          current = id;
+        }
+      }
+      setActiveTab(current);
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateActiveSection);
+      }
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Images and video load asynchronously and shift section positions after
+    // mount, so re-measure whenever the page's layout height changes.
+    const resizeObserver = new ResizeObserver(onScroll);
+    resizeObserver.observe(document.body);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      resizeObserver.disconnect();
+    };
+  }, [isTiVo, caseStudyId]);
 
   const scrollToSection = (sectionId: string) => {
     setActiveTab(sectionId);
@@ -56,7 +96,6 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
   };
 
   const [isMockup3D, setIsMockup3D] = useState(true);
-  const isTiVo = caseStudy.id === "tivo-mobile";
 
   return (
     <div className="min-h-screen font-body antialiased">
@@ -750,7 +789,7 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                       </div>
                       <div className="p-3 border-b border-ink/10 space-y-1">
                         <span className="text-ink font-bold flex items-center gap-1.5"><Link className="w-3.5 h-3.5" /> Alternate Sources</span>
-                        <p className="text-gray text-[11px]">Jumps directly to Peacock/DVR.</p>
+                        <p className="text-gray text-[11px]">Choose where to watch from seamlessly</p>
                       </div>
                     </div>
                   </div>
@@ -760,125 +799,93 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
               </div>
 
               {/* ------------------------------------------------------------- */}
-              {/* PRINCIPLE 3: GROUP AND CATEGORIZE CONTENT */}
+              {/* PRINCIPLE 3: ELEVATE WATCHING LIVE TV */}
               {/* ------------------------------------------------------------- */}
               <div className="pt-12 border-t hairline space-y-8">
-                
+
                 <div className="space-y-2">
                   <h3 className="font-display text-2xl font-bold text-ink-deep">
-                    3. Group and Categorize Content
+                    3. Elevate Watching Live TV
                   </h3>
                   <p className="text-body-lg text-gray leading-relaxed max-w-3xl">
-                    Aggregating linear cable, FAST channels (TiVo+ Free), and sports broadcasts required category filters that group channels dynamically without confusing the user.
+                    One of the biggest opportunities was improving how the product felt. Thoughtful playback behaviors, from contextual controls to responsive orientation changes, helped the Guide feel like a natural, content-focused experience.
                   </p>
                 </div>
 
-                {/* Interactive Category Filter Visualizer */}
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2" role="tablist" aria-label="Channel category filters">
-                    {["Sports", "Favorites", "News", "Movies", "TiVo+ Free"].map((cat) => (
-                      <button
-                        key={cat}
-                        role="tab"
-                        aria-selected={activeCategoryFilter === cat}
-                        onClick={() => setActiveCategoryFilter(cat)}
-                        className={`px-4 py-2 rounded-full font-mono text-xs font-bold transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-ink ${
-                          activeCategoryFilter === cat
-                            ? "bg-ink text-paper shadow-sm"
-                            : "bg-paper-deep text-ink-deep hover:bg-ink/10"
-                        }`}
-                      >
-                        {cat} Channels
-                      </button>
-                    ))}
-                  </div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
-                  {/* Filtered Channel Results Render */}
-                  <div className="border-t border-b hairline py-4 space-y-3">
-                    <span className="font-mono text-[11px] text-gray uppercase block">
-                      Showing Filtered Channels: <strong className="text-ink-deep">{activeCategoryFilter}</strong>
-                    </span>
+                  {/* Left Column: Rationale & Design Decisions */}
+                  <div className="lg:col-span-6 space-y-4">
+                    <div className="border-l-4 border-ink/30 bg-ink/[0.04] rounded-r-xl p-5 pl-7 space-y-2">
+                      <span className="font-mono text-xs uppercase text-ink font-bold tracking-widest block">
+                        Key Design Decision
+                      </span>
+                      <p className="text-body-md text-gray leading-relaxed font-body pl-2">
+                        Instead of separating browsing from watching, I brought them together. Live playback stayed with users as they explored the Guide, letting them preview content, browse without interruption, and transition seamlessly into fullscreen when they were ready.
+                      </p>
+                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      {activeCategoryFilter === "Sports" && (
-                        <>
-                          <div className="p-4 border-l-4 border-ink bg-ink/[0.03] rounded-r-xl space-y-1">
-                            <span className="font-mono text-xs text-ink font-bold block">ESPN • Ch 206</span>
-                            <h5 className="font-display font-bold text-ink-deep">NBA Regular Season Live</h5>
-                            <p className="text-xs text-gray pl-2">Golden State Warriors vs. Philadelphia 76ers</p>
-                          </div>
-                          <div className="p-4 border-l-4 border-ink bg-ink/[0.03] rounded-r-xl space-y-1">
-                            <span className="font-mono text-xs text-ink font-bold block">Golf Channel • Ch 218</span>
-                            <h5 className="font-display font-bold text-ink-deep">PGA Tour Championship</h5>
-                            <p className="text-xs text-gray pl-2">Round 3 Highlights Live Coverage</p>
-                          </div>
-                          <div className="p-4 border-l-4 border-ink bg-ink/[0.03] rounded-r-xl space-y-1">
-                            <span className="font-mono text-xs text-ink font-bold block">NBC Sports • Ch 220</span>
-                            <h5 className="font-display font-bold text-ink-deep">Premier League Live</h5>
-                            <p className="text-xs text-gray pl-2">Arsenal vs. Manchester City</p>
-                          </div>
-                        </>
-                      )}
-
-                      {activeCategoryFilter !== "Sports" && (
-                        <>
-                          <div className="p-4 border-l-4 border-ink bg-ink/[0.03] rounded-r-xl space-y-1">
-                            <span className="font-mono text-xs text-ink font-bold block">TiVo+ Free • Ch 402</span>
-                            <h5 className="font-display font-bold text-ink-deep">TiVo+ Action Movies</h5>
-                            <p className="text-xs text-gray pl-2">24/7 Blockbuster Movie Broadcast</p>
-                          </div>
-                          <div className="p-4 border-l-4 border-ink bg-ink/[0.03] rounded-r-xl space-y-1">
-                            <span className="font-mono text-xs text-ink font-bold block">CNN • Ch 102</span>
-                            <h5 className="font-display font-bold text-ink-deep">The Lead Live</h5>
-                            <p className="text-xs text-gray pl-2">National &amp; World News Headlines</p>
-                          </div>
-                          <div className="p-4 border-l-4 border-ink bg-ink/[0.03] rounded-r-xl space-y-1">
-                            <span className="font-mono text-xs text-ink font-bold block">HBO Max • Ch 301</span>
-                            <h5 className="font-display font-bold text-ink-deep">House of the Dragon</h5>
-                            <p className="text-xs text-gray pl-2">On-Demand Stream Available</p>
-                          </div>
-                        </>
-                      )}
+                    <div className="space-y-3 pt-2">
+                      <span className="font-mono text-xs uppercase text-ink font-bold tracking-widest block">
+                        Design Decisions
+                      </span>
+                      <ul className="space-y-2.5">
+                        {[
+                          "Playback controls disappear after 3 seconds instead of 7",
+                          "A progress indicator clearly indicates where you've landed on the show and how much time remains.",
+                          "Orientation changes intelligently between Guide and fullscreen",
+                          "Allows Startover when option is available",
+                        ].map((decision) => (
+                          <li key={decision} className="flex items-start gap-2.5 text-sm text-ink-deep leading-relaxed">
+                            <Check className="w-4 h-4 text-ink shrink-0 mt-0.5" />
+                            <span>{decision}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
+
+                  {/* Right Column: Reserved for image */}
+                  <div className="lg:col-span-6" />
+
                 </div>
 
               </div>
 
               {/* ------------------------------------------------------------- */}
-              {/* PRINCIPLE 4: BALANCE FLEXIBILITY AND SIMPLICITY */}
+              {/* PRINCIPLE 4: SIMPLIFY A COMPLEX ECOSYSTEM */}
               {/* ------------------------------------------------------------- */}
               <div className="pt-12 border-t hairline space-y-8">
-                
+
                 <div className="space-y-2">
                   <h3 className="font-display text-2xl font-bold text-ink-deep">
-                    4. Balance Flexibility and Simplicity
+                    4. Simplify a Complex Ecosystem
                   </h3>
-                  <p className="text-body-lg text-gray leading-relaxed max-w-3xl">
-                    Power users rely on deep customization, while casual viewers want zero setup. The new experience balances both by serving smart defaults upfront while offering one-tap access to advanced filters and channel organization.
-                  </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div className="p-6 rounded-2xl bg-paper-deep border hairline space-y-3">
-                    <span className="font-mono text-xs uppercase text-ink font-bold tracking-widest block">
-                      Smart Defaults
-                    </span>
-                    <h4 className="font-display font-bold text-lg text-ink-deep">Zero-Config Out of the Box</h4>
-                    <p className="text-sm text-gray leading-relaxed">
-                      Auto-surfacing trending live broadcasts, favorite channels, and active sports games without requiring complex initial onboarding or filter setup.
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+                  {/* Left Column: Reserved for image */}
+                  <div className="lg:col-span-6" />
+
+                  {/* Right Column: Body Copy */}
+                  <div className="lg:col-span-6 space-y-4">
+                    <p className="text-body-lg text-gray leading-relaxed font-body">
+                      Designing for a content aggregator meant solving more than a traditional TV Guide. Live broadcast channels, FAST services like TiVo+ and Pluto TV, and third-party providers all behaved differently. Rather than exposing that complexity, I designed lightweight patterns that helped people navigate it naturally.
                     </p>
+                    <p className="text-body-lg text-gray leading-relaxed font-body">
+                      Channel groups created clear distinctions between content sources, long-press actions made favoriting effortless, Favorites filters reduced browsing time, and quick navigation controls let people jump through hundreds of channels or return instantly to what was live.
+                    </p>
+                    <div className="pt-2 space-y-0.5">
+                      <p className="text-body-lg text-gray leading-relaxed font-body">
+                        The goal wasn&apos;t to hide complexity.
+                      </p>
+                      <p className="text-body-lg text-ink-deep font-bold leading-relaxed font-body">
+                        It was to make it feel effortless.
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="p-6 rounded-2xl bg-paper-deep border hairline space-y-3">
-                    <span className="font-mono text-xs uppercase text-ink font-bold tracking-widest block">
-                      Power User Control
-                    </span>
-                    <h4 className="font-display font-bold text-lg text-ink-deep">Deep Customization on Demand</h4>
-                    <p className="text-sm text-gray leading-relaxed">
-                      Allowing legacy TiVo subscribers to pin custom channel numbers, edit favorite list order, and manage multi-room DVR recordings directly from quick actions.
-                    </p>
-                  </div>
                 </div>
 
               </div>
