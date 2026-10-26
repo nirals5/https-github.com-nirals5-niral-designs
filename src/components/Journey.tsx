@@ -59,7 +59,7 @@ export default function Journey() {
                 {/* Step Pill */}
                 <button
                   onClick={() => setActiveStep(step.id)}
-                  className={`relative px-5 py-2.5 rounded-full font-sans text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ink/40 ${
+                  className={`relative min-h-11 px-5 py-2.5 rounded-full font-sans text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ink/40 ${
                     isActive
                       ? "text-white shadow-sm"
                       : "bg-paper-deep/60 hover:bg-paper-deep text-ink hover:text-ink-deep"

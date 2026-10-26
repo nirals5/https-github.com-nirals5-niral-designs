@@ -138,7 +138,7 @@ export default function App() {
           {/* Logo */}
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-3 font-display font-semibold text-h3 text-ink-deep tracking-tight cursor-pointer hover:opacity-80 transition-opacity"
+            className="flex items-center gap-3 py-2.5 -my-2.5 font-display font-semibold text-h3 text-ink-deep tracking-tight cursor-pointer hover:opacity-80 transition-opacity"
           >
             <NiralLogo size={24} className="rounded" />
             <span>Niral Shah</span>
@@ -186,7 +186,7 @@ export default function App() {
           {/* Mobile Menu Toggle Button */}
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-ink-deep hover:text-ink focus:outline-none"
+            className="md:hidden p-2.5 -m-2.5 text-ink-deep hover:text-ink focus:outline-none"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -408,7 +408,7 @@ export default function App() {
                 {/* View Case Study button */}
                 <button
                   onClick={() => { window.location.hash = `#/case-study/${caseStudiesData[0].id}`; }}
-                  className="bg-paper text-charcoal font-sans text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full hover:bg-white hover:text-charcoal hover:shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2 cursor-pointer transition-all border border-paper"
+                  className="bg-paper text-charcoal font-sans text-xs font-bold uppercase tracking-widest min-h-11 px-5 py-2.5 rounded-full hover:bg-white hover:text-charcoal hover:shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2 cursor-pointer transition-all border border-paper"
                 >
                   <span>View case study</span>
                   <ChevronRight className="w-4 h-4 text-ink-deep" />
@@ -464,7 +464,7 @@ export default function App() {
                 {/* View Case Study button */}
                 <button
                   onClick={() => { window.location.hash = `#/case-study/${caseStudiesData[1].id}`; }}
-                  className="bg-paper text-charcoal font-sans text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full hover:bg-white hover:text-charcoal hover:shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2 cursor-pointer transition-all border border-paper"
+                  className="bg-paper text-charcoal font-sans text-xs font-bold uppercase tracking-widest min-h-11 px-5 py-2.5 rounded-full hover:bg-white hover:text-charcoal hover:shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2 cursor-pointer transition-all border border-paper"
                 >
                   <span>View case study</span>
                   <ChevronRight className="w-4 h-4 text-ink-deep" />
@@ -520,7 +520,7 @@ export default function App() {
                 {/* View Case Study button */}
                 <button
                   onClick={() => { window.location.hash = `#/case-study/${caseStudiesData[2].id}`; }}
-                  className="bg-paper text-charcoal font-sans text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full hover:bg-white hover:text-charcoal hover:shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2 cursor-pointer transition-all border border-paper"
+                  className="bg-paper text-charcoal font-sans text-xs font-bold uppercase tracking-widest min-h-11 px-5 py-2.5 rounded-full hover:bg-white hover:text-charcoal hover:shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2 cursor-pointer transition-all border border-paper"
                 >
                   <span>View case study</span>
                   <ChevronRight className="w-4 h-4 text-ink-deep" />
@@ -670,7 +670,7 @@ export default function App() {
                       href={testimonials[currentTestimonial].linkedin} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-ink/50 hover:text-ink transition-colors flex p-1"
+                      className="text-ink/50 hover:text-ink transition-colors flex p-3.5 -m-2.5"
                       aria-label={`${testimonials[currentTestimonial].name} LinkedIn Profile`}
                     >
                       <LinkedInIcon className="w-4 h-4" />
@@ -695,7 +695,7 @@ export default function App() {
               {/* Prev Button */}
               <button
                 onClick={handlePrevTestimonial}
-                className="p-3 rounded-full border border-ink/10 hover:border-ink/25 bg-paper/40 hover:bg-paper text-ink hover:text-ink-deep transition-all cursor-pointer shadow-sm hover:shadow active:scale-95 flex items-center justify-center"
+                className="w-11 h-11 rounded-full border border-ink/10 hover:border-ink/25 bg-paper/40 hover:bg-paper text-ink hover:text-ink-deep transition-all cursor-pointer shadow-sm hover:shadow active:scale-95 flex items-center justify-center"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -706,16 +706,21 @@ export default function App() {
                 <span className="font-mono text-[11px] text-ink/50 select-none">
                   {String(currentTestimonial + 1).padStart(2, "0")}
                 </span>
-                <div className="flex gap-1.5">
+                {/* Buttons are 44px tall and sit edge to edge; the visible dot is the inner span */}
+                <div className="flex">
                   {testimonials.map((_, idx) => (
                     <button
                       key={idx}
                       onClick={() => setCurrentTestimonial(idx)}
-                      className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                        idx === currentTestimonial ? "w-5 bg-ink" : "w-1.5 bg-ink/20 hover:bg-ink/35"
-                      }`}
+                      className="group h-11 -my-[19px] px-[3px] flex items-center cursor-pointer"
                       aria-label={`Go to slide ${idx + 1}`}
-                    />
+                    >
+                      <span
+                        className={`block h-1.5 rounded-full transition-all duration-300 ${
+                          idx === currentTestimonial ? "w-5 bg-ink" : "w-1.5 bg-ink/20 group-hover:bg-ink/35"
+                        }`}
+                      />
+                    </button>
                   ))}
                 </div>
                 <span className="font-mono text-[11px] text-ink/30 select-none">
@@ -726,7 +731,7 @@ export default function App() {
               {/* Next Button */}
               <button
                 onClick={handleNextTestimonial}
-                className="p-3 rounded-full border border-ink/10 hover:border-ink/25 bg-paper/40 hover:bg-paper text-ink hover:text-ink-deep transition-all cursor-pointer shadow-sm hover:shadow active:scale-95 flex items-center justify-center"
+                className="w-11 h-11 rounded-full border border-ink/10 hover:border-ink/25 bg-paper/40 hover:bg-paper text-ink hover:text-ink-deep transition-all cursor-pointer shadow-sm hover:shadow active:scale-95 flex items-center justify-center"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -868,12 +873,12 @@ export default function App() {
           </div>
 
           {/* Social Links (Open in New Tab) */}
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <div className="flex flex-wrap items-center gap-x-6">
             <a 
               href="https://www.linkedin.com/in/niral-shah-designer/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-paper transition-colors flex items-center gap-1.5 font-sans text-xs font-semibold uppercase tracking-wider"
+              className="min-h-11 hover:text-paper transition-colors flex items-center gap-1.5 font-sans text-xs font-semibold uppercase tracking-wider"
               aria-label="LinkedIn"
             >
               <LinkedInIcon className="w-4 h-4" />
@@ -883,7 +888,7 @@ export default function App() {
               href="https://substack.com/@nirals5" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-paper transition-colors flex items-center gap-1.5 font-sans text-xs font-semibold uppercase tracking-wider"
+              className="min-h-11 hover:text-paper transition-colors flex items-center gap-1.5 font-sans text-xs font-semibold uppercase tracking-wider"
               aria-label="Substack"
             >
               <SubstackIcon className="w-4 h-4" />
@@ -893,7 +898,7 @@ export default function App() {
               href="https://www.instagram.com/nirals5/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-paper transition-colors flex items-center gap-1.5 font-sans text-xs font-semibold uppercase tracking-wider"
+              className="min-h-11 hover:text-paper transition-colors flex items-center gap-1.5 font-sans text-xs font-semibold uppercase tracking-wider"
               aria-label="Instagram"
             >
               <Instagram className="w-4 h-4" />
