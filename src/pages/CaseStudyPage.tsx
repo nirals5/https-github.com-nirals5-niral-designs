@@ -19,6 +19,7 @@ import slingtvImg from "../assets/images/slingtv.png";
 import tubiImg from "../assets/images/tubi.png";
 import youtubeImg from "../assets/images/youtube.png";
 import guideQuickActionsVideo from "../assets/images/guide_quick_actions.mp4";
+import guideLiveTvVideo from "../assets/images/guide_live_tv.mp4";
 
 interface CaseStudyPageProps {
   caseStudyId: string;
@@ -850,8 +851,24 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                     </div>
                   </div>
 
-                  {/* Right Column: Reserved for image */}
-                  <div className="lg:col-span-6" />
+                  {/* Right Column: Live TV Playback & Orientation Video Demo */}
+                  <div className="lg:col-span-6 flex items-center justify-center">
+                    <div className="w-full h-full bg-[#EDEAE3] rounded-2xl p-6 sm:p-8 flex items-center justify-center min-h-0">
+                      <div className="relative overflow-hidden rounded-2xl flex items-center justify-center max-h-full">
+                        <video
+                          src={guideLiveTvVideo}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          controls
+                          className="max-h-full lg:max-h-[500px] w-auto rounded-2xl object-contain block"
+                        >
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
+                    </div>
+                  </div>
 
                 </div>
 
