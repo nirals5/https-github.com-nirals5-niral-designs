@@ -37,6 +37,20 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
   const [selectedScreenTab, setSelectedScreenTab] = useState<"after" | "before">("after");
   const isTiVo = caseStudy.id === "tivo-mobile";
 
+  // Key Impact Highlight Banner
+  const impactBanner = (
+    <div className="border-l-4 border-lilac/30 bg-white/5 rounded-r-xl p-5 pl-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="space-y-1">
+        <span className="font-mono text-xs uppercase tracking-widest text-lilac font-bold flex items-center gap-1.5">
+          <TrendingUp className="w-4 h-4" /> Measured Impact
+        </span>
+        <p className="font-display text-xl md:text-2xl text-paper font-medium leading-snug pl-2">
+          {caseStudy.impactMetric}
+        </p>
+      </div>
+    </div>
+  );
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [caseStudyId]);
@@ -219,7 +233,9 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
           </div>
 
           {/* Hero Cover Image & Key Impact Highlight */}
+          {/* TiVo shows the impact banner above the image; other case studies show it below */}
           <div className="space-y-6 pt-2">
+            {isTiVo && impactBanner}
             <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-[16/9] relative shadow-2xl group">
               <img
                 src={caseStudy.coverImage}
@@ -229,18 +245,7 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-60 pointer-events-none" />
             </div>
-
-            {/* Key Impact Highlight Banner */}
-            <div className="border-l-4 border-lilac/30 bg-white/5 rounded-r-xl p-5 pl-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="space-y-1">
-                <span className="font-mono text-xs uppercase tracking-widest text-lilac font-bold flex items-center gap-1.5">
-                  <TrendingUp className="w-4 h-4" /> Measured Key Impact
-                </span>
-                <p className="font-display text-xl md:text-2xl text-paper font-medium leading-snug pl-2">
-                  {caseStudy.impactMetric}
-                </p>
-              </div>
-            </div>
+            {!isTiVo && impactBanner}
           </div>
 
         </div>
