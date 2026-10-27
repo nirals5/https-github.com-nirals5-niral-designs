@@ -19,7 +19,7 @@ import slingtvImg from "../assets/images/slingtv.png";
 import tubiImg from "../assets/images/tubi.png";
 import youtubeImg from "../assets/images/youtube.png";
 import guideQuickActionsVideo from "../assets/images/guide_quick_actions.mp4";
-import guideLiveTvVideo from "../assets/images/guide_live_tv.mp4";
+import guidePhoneRotationVideo from "../assets/images/guide_phone_rotation.mp4";
 
 interface CaseStudyPageProps {
   caseStudyId: string;
@@ -856,7 +856,7 @@ export default function CaseStudyPage({ caseStudyId, onNavigateHome, onNavigateC
                     <div className="w-full h-full bg-[#EDEAE3] rounded-2xl p-6 sm:p-8 flex items-center justify-center min-h-0">
                       <div className="relative overflow-hidden rounded-2xl flex items-center justify-center max-h-full">
                         <video
-                          src={guideLiveTvVideo}
+                          src={guidePhoneRotationVideo}
                           autoPlay
                           loop
                           muted
